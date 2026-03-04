@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "dart-lsp": {
+      "command": "/home/user/.local/bin/dart-lsp-mcp",
+      "args": [],
+      "env": {}
+    },
+    "dart": {
+      "command": "dart",
+      "args": [
+        "mcp-server"
+      ]
+    }
+  }
+}

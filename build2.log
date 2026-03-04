@@ -1,0 +1,22 @@
+
+> my-v0-project@0.1.0 build
+> next build
+
+   Ôû▓ Next.js 15.1.11
+
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully
+   Linting and checking validity of types ...
+Failed to compile.
+
+./app/staff/captain/page.tsx:88:9
+Type error: Type 'Promise<QRTIDRequest | null>' is missing the following properties from type 'QRTIDRequest': id, qrtCode, verificationCode, userId, and 24 more.
+
+  86 |       if (verificationCode) {
+  87 |         console.log(`[Scanner] Scanned verificationCode: ${verificationCode}`)
+> 88 |         qrt = findQRTByVerificationCode(verificationCode)
+     |         ^
+  89 |       } else if (parsed.qrtCode) {
+  90 |         console.log(`[Scanner] Scanned qrtCode: ${parsed.qrtCode}`)
+  91 |         qrt = getQRTByCode(parsed.qrtCode)
+Next.js build worker exited with code: 1 and signal: null

@@ -1,0 +1,22 @@
+
+> my-v0-project@0.1.0 build
+> next build
+
+   Ôû▓ Next.js 15.1.11
+
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully
+   Linting and checking validity of types ...
+Failed to compile.
+
+./app/qrt-id/request/page.tsx:115:62
+Type error: Object is possibly 'undefined'.
+
+  113 | function DateDropdown({ value, onChange, hasError }: DateDropdownProps) {
+  114 |   const parsedDate = value ? new Date(value) : null
+> 115 |   const [selectedMonth, setSelectedMonth] = useState<number>(parsedDate?.getMonth() + 1 || 0)
+      |                                                              ^
+  116 |   const [selectedDay, setSelectedDay] = useState<number>(parsedDate?.getDate() || 0)
+  117 |   const [selectedYear, setSelectedYear] = useState<number>(parsedDate?.getFullYear() || 0)
+  118 |   const [lastCalledIsoDate, setLastCalledIsoDate] = useState<string>("")
+Next.js build worker exited with code: 1 and signal: null

@@ -1,0 +1,81 @@
+
+> my-v0-project@0.1.0 build
+> next build
+
+   Ôû▓ Next.js 15.1.11
+
+   Creating an optimized production build ...
+ Ô£ô Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/37) ...
+ReferenceError: location is not defined
+    at V (C:\Users\ampoy\Investor Showcase App\Investor Showcase App\Investor_showcase_app\Investor_showcase_app\.next\server\app\staff\announcements\page.js:1:6568)
+ReferenceError: location is not defined
+    at C (C:\Users\ampoy\Investor Showcase App\Investor Showcase App\Investor_showcase_app\Investor_showcase_app\.next\server\app\staff\blotters\page.js:1:4267)
+ReferenceError: location is not defined
+    at _ (C:\Users\ampoy\Investor Showcase App\Investor Showcase App\Investor_showcase_app\Investor_showcase_app\.next\server\app\staff\bayanihan\page.js:1:4381)
+ReferenceError: location is not defined
+    at E (C:\Users\ampoy\Investor Showcase App\Investor Showcase App\Investor_showcase_app\Investor_showcase_app\.next\server\app\staff\certificates\page.js:1:24465)
+ReferenceError: location is not defined
+    at S (C:\Users\ampoy\Investor Showcase App\Investor Showcase App\Investor_showcase_app\Investor_showcase_app\.next\server\app\staff\reports\page.js:1:3466)
+   Generating static pages (9/37) 
+   Generating static pages (18/37) 
+   Generating static pages (27/37) 
+ Ô£ô Generating static pages (37/37)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+Ôöî Ôùï /                                    2.87 kB         125 kB
+Ôö£ Ôùï /_not-found                          212 B           106 kB
+Ôö£ Ôùï /announcements                       1.83 kB         123 kB
+Ôö£ ãÆ /announcements/[id]                  2.15 kB         130 kB
+Ôö£ ãÆ /api/ocr                             212 B           106 kB
+Ôö£ ãÆ /api/qrt-id/generate                 212 B           106 kB
+Ôö£ ãÆ /api/qrt-id/qr-code                  212 B           106 kB
+Ôö£ ãÆ /api/qrt-id/verify/[code]            212 B           106 kB
+Ôö£ ãÆ /api/qrt-id/verify/log               212 B           106 kB
+Ôö£ ãÆ /api/verify/[serial]                 212 B           106 kB
+Ôö£ Ôùï /bayanihan                           3.36 kB         154 kB
+Ôö£ Ôùï /blotter                             3.36 kB         154 kB
+Ôö£ ãÆ /certificate/[id]                    9.22 kB         146 kB
+Ôö£ Ôùï /dashboard                           20.3 kB         189 kB
+Ôö£ Ôùï /health-center                       3.36 kB         154 kB
+Ôö£ Ôùï /install                             3.05 kB         131 kB
+Ôö£ Ôùï /login                               4.74 kB         121 kB
+Ôö£ Ôùï /payment                             12.3 kB         161 kB
+Ôö£ Ôùï /payment/history                     4.87 kB         144 kB
+Ôö£ Ôùï /permits                             3.36 kB         154 kB
+Ôö£ Ôùï /profile                             5.57 kB         127 kB
+Ôö£ Ôùï /qrt-id                              525 B           107 kB
+Ôö£ ãÆ /qrt-id/[id]                         4.65 kB         181 kB
+Ôö£ Ôùï /qrt-id/request                      11.3 kB         198 kB
+Ôö£ Ôùï /register                            10.7 kB         127 kB
+Ôö£ Ôùï /register/success                    7.13 kB         162 kB
+Ôö£ Ôùï /request                             3.64 kB         156 kB
+Ôö£ Ôùï /requests                            7.48 kB         133 kB
+Ôö£ ãÆ /requests/qrt/[id]                   4.65 kB         181 kB
+Ôö£ Ôùï /staff/announcements                 8.14 kB         154 kB
+Ôö£ Ôùï /staff/bayanihan                     4.27 kB         151 kB
+Ôö£ ãÆ /staff/bayanihan/[id]                6.33 kB         165 kB
+Ôö£ Ôùï /staff/blotters                      10.1 kB         156 kB
+Ôö£ Ôùï /staff/captain                       10.6 kB         198 kB
+Ôö£ Ôùï /staff/certificates                  9.59 kB         159 kB
+Ôö£ Ôùï /staff/login                         5.34 kB         127 kB
+Ôö£ Ôùï /staff/qrt-management                3.28 kB         155 kB
+Ôö£ Ôùï /staff/qrt-verify                    7.54 kB         173 kB
+Ôö£ Ôùï /staff/reports                       9.33 kB         153 kB
+Ôö£ Ôùï /staff/secretary                     9.65 kB         138 kB
+Ôö£ Ôùï /staff/treasurer                     5.96 kB         131 kB
+Ôö£ Ôùï /taxes                               3.36 kB         154 kB
+Ôöö ãÆ /verify/[serial]                     3.96 kB         126 kB
++ First Load JS shared by all            106 kB
+  Ôö£ chunks/1517-9e5d1781ce8e9f5e.js      50.8 kB
+  Ôö£ chunks/4bd1b696-193244142b3b5993.js  53 kB
+  Ôöö other shared chunks (total)          2.21 kB
+
+
+Ôùï  (Static)   prerendered as static content
+ãÆ  (Dynamic)  server-rendered on demand
+
