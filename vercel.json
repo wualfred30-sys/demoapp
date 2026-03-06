@@ -1,6 +1,3 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "npm install",
-  "buildCommand": "cd investor-demo && npm run build",
-  "outputDirectory": "investor-demo/out"
+  "installCommand": "npm install"
 }
