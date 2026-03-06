@@ -1,15 +1,7 @@
 {
   "mcpServers": {
-    "dart-lsp": {
-      "command": "/home/user/.local/bin/dart-lsp-mcp",
-      "args": [],
-      "env": {}
-    },
-    "dart": {
-      "command": "dart",
-      "args": [
-        "mcp-server"
-      ]
+    "vercel": {
+      "url": "https://mcp.vercel.com/wualfred30-sys/demoapp"
     }
   }
 }

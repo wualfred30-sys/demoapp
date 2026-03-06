@@ -1,46 +1,8 @@
-"use client"
-
-import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
 export default function LandingPage() {
-  const [showSplash, setShowSplash] = useState(true)
-
-  useEffect(() => {
-    // Show splash screen for 2 seconds
-    const timer = setTimeout(() => {
-      setShowSplash(false)
-    }, 2000)
-    return () => clearTimeout(timer)
-  }, [])
-
-  if (showSplash) {
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-center bg-white px-5">
-        <div className="flex flex-col items-center mt-[-60px]">
-          <div className="h-32 w-32 relative mb-6 animate-pulse">
-            <Image
-              src="/images/cat-logo.svg"
-              alt="Cat Logo"
-              fill
-              priority
-              className="object-contain drop-shadow-md"
-            />
-          </div>
-          <h1 className="text-[36px] font-black leading-none tracking-tight text-[#333333] mb-3 text-center">
-            Barangay Linkod
-          </h1>
-          <p className="text-[15px] text-[#777777] font-medium mb-16 text-center max-w-[280px]">
-            Connecting you to your barangay services.
-          </p>
-          <div className="h-2 w-6 bg-[#28FA93] rounded-full animate-bounce"></div>
-        </div>
-      </main>
-    )
-  }
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-white px-6 py-10 relative">
       <div className="flex w-full max-w-sm flex-col items-center flex-1 justify-center mt-[-40px]">
