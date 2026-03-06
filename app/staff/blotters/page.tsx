@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { useAuth } from "@/lib/auth-context"
@@ -48,8 +48,13 @@ export default function StaffBlottersPage() {
   const [selectedBlotter, setSelectedBlotter] = useState<string | null>(null)
   const [resolutionNotes, setResolutionNotes] = useState("")
 
+  useEffect(() => {
+    if (!isStaffAuthenticated) {
+      router.push("/staff/login")
+    }
+  }, [isStaffAuthenticated, router])
+
   if (!isStaffAuthenticated) {
-    router.push("/staff/login")
     return null
   }
 

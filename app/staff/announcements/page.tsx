@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { useAuth } from "@/lib/auth-context"
@@ -30,8 +30,13 @@ export default function StaffAnnouncementsPage() {
     isPinned: false,
   })
 
+  useEffect(() => {
+    if (!isStaffAuthenticated) {
+      router.push("/staff/login")
+    }
+  }, [isStaffAuthenticated, router])
+
   if (!isStaffAuthenticated) {
-    router.push("/staff/login")
     return null
   }
 

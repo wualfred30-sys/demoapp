@@ -269,6 +269,12 @@ export default function StaffCertificatesPage() {
   const daysInMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0).getDate()
   const firstDayOfMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1).getDay()
 
+  useEffect(() => {
+    if (!isStaffAuthenticated) {
+      router.push("/staff/login")
+    }
+  }, [isStaffAuthenticated, router])
+
   const CertificateCard = ({
     cert,
     compact = false,
@@ -495,7 +501,6 @@ export default function StaffCertificatesPage() {
   )
 
   if (!isStaffAuthenticated) {
-    router.push("/staff/login")
     return null
   }
 
