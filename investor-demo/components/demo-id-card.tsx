@@ -1,4 +1,4 @@
-import { InvestorDemoProfile, formatAddress, getResidentCode } from "@/lib/demo-storage"
+import { InvestorDemoProfile, formatAddress, getResidentCode } from "../lib/demo-storage"
 
 export function DemoIdCard({ profile }: { profile: InvestorDemoProfile }) {
   return (

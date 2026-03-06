@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { DemoIdCard } from "@/components/demo-id-card"
-import { InvestorDemoProfile, clearInvestorProfile, createEmptyProfile, formatAddress, loadInvestorProfile } from "@/lib/demo-storage"
+import { DemoIdCard } from "../../components/demo-id-card"
+import { InvestorDemoProfile, clearInvestorProfile, createEmptyProfile, formatAddress, loadInvestorProfile } from "../../lib/demo-storage"
 
 export default function DashboardPage() {
   const router = useRouter()

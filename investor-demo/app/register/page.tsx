@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
-import { DemoIdCard } from "@/components/demo-id-card"
-import { PhotoInput } from "@/components/photo-input"
-import { StepProgress } from "@/components/step-progress"
-import { InvestorDemoProfile, createEmptyProfile, saveInvestorProfile } from "@/lib/demo-storage"
+import { DemoIdCard } from "../../components/demo-id-card"
+import { PhotoInput } from "../../components/photo-input"
+import { StepProgress } from "../../components/step-progress"
+import { InvestorDemoProfile, createEmptyProfile, saveInvestorProfile } from "../../lib/demo-storage"
 
 export default function RegisterPage() {
   const router = useRouter()
