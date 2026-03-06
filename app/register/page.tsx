@@ -17,39 +17,44 @@ const STEPS = ["Profile Photo", "Your Info", "Account"]
 
 function StepProgress({ current }: { current: number }) {
   return (
-    <div className="flex items-center gap-0 w-full max-w-xs mx-auto mb-8">
-      {STEPS.map((label, i) => {
-        const done = i < current
-        const active = i === current
-        return (
-          <div key={label} className="flex flex-1 items-center">
-            {/* Step circle */}
-            <div className="relative flex flex-col items-center">
-              <div
-                className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-all
-                  ${done
-                    ? "bg-[#00FFCC] text-black"
-                    : active
-                      ? "border-2 border-[#00FFCC] bg-transparent text-[#00FFCC]"
-                      : "border-2 border-border bg-transparent text-muted-foreground"
-                  }`}
-              >
-                {done ? <Check className="h-4 w-4" strokeWidth={3} /> : i + 1}
+    <div className="mx-auto mb-8 w-full max-w-sm px-3">
+      <div className="relative">
+        <div className="absolute left-0 right-0 top-4 h-px bg-border" aria-hidden="true" />
+        <div
+          className="absolute left-0 top-4 h-px bg-[#00FFCC] transition-all duration-300"
+          style={{ width: `${current === 0 ? 0 : (current / (STEPS.length - 1)) * 100}%` }}
+          aria-hidden="true"
+        />
+
+        <div className="grid grid-cols-3">
+          {STEPS.map((label, i) => {
+            const done = i < current
+            const active = i === current
+
+            return (
+              <div key={label} className="flex flex-col items-center text-center">
+                <div
+                  className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full bg-background text-xs font-bold transition-all
+                    ${done
+                      ? "bg-[#00FFCC] text-black"
+                      : active
+                        ? "border-2 border-[#00FFCC] text-[#00FFCC]"
+                        : "border-2 border-border text-muted-foreground"
+                    }`}
+                >
+                  {done ? <Check className="h-4 w-4" strokeWidth={3} /> : i + 1}
+                </div>
+                <span
+                  className={`mt-3 text-[10px] font-medium leading-tight ${active ? "text-[#00FFCC]" : done ? "text-foreground" : "text-muted-foreground"
+                    }`}
+                >
+                  {label}
+                </span>
               </div>
-              <span
-                className={`absolute top-9 whitespace-nowrap text-[10px] font-medium ${active ? "text-[#00FFCC]" : done ? "text-foreground" : "text-muted-foreground"
-                  }`}
-              >
-                {label}
-              </span>
-            </div>
-            {/* Connector */}
-            {i < STEPS.length - 1 && (
-              <div className={`h-px flex-1 mx-1 transition-colors ${done ? "bg-[#00FFCC]" : "bg-border"}`} />
-            )}
-          </div>
-        )
-      })}
+            )
+          })}
+        </div>
+      </div>
     </div>
   )
 }
@@ -98,7 +103,16 @@ export default function RegisterPage() {
   }
 
   const validateStep1 = () => {
-    // We intentionally allow all fields to be blank per user request
+    if (!formData.fullName.trim()) {
+      setError("Please enter the resident's full name.")
+      return false
+    }
+
+    if (!formData.addressData.barangay) {
+      setError("Please select the resident's barangay.")
+      return false
+    }
+
     setError(null)
     return true
   }
@@ -161,6 +175,7 @@ export default function RegisterPage() {
         fullName: formData.fullName,
         email: formData.email,
         photoUrl: formData.photoUrl,
+        barangay: formData.addressData.barangay,
         address: [
           formData.addressData.street,
           formData.addressData.barangay,

@@ -11,6 +11,8 @@ interface Resident {
     precinctId?: string
     photoUrl?: string
     barangay?: string
+    mobileNumber?: string
+    email?: string
 }
 
 interface IDCardProps {

@@ -12,6 +12,9 @@ interface Resident {
     address: string
     precinctId?: string
     barangay?: string
+    photoUrl?: string
+    mobileNumber?: string
+    email?: string
 }
 
 interface ExportModalProps {
@@ -51,7 +54,7 @@ export function ExportModal({ resident, open, onClose }: ExportModalProps) {
                 gender: "",
                 civilStatus: "",
                 birthPlace: "",
-                photoUrl: "",
+                photoUrl: resident.photoUrl || "",
                 issuedDate: new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
                 expiryDate: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }),
                 emergencyContactName: "",
@@ -132,11 +135,24 @@ export function ExportModal({ resident, open, onClose }: ExportModalProps) {
                                 </div>
 
                                 {/* Resident summary */}
-                                <div className="mb-6 rounded-xl border border-border bg-muted/40 p-4">
-                                    <p className="text-sm font-semibold text-foreground">{resident.fullName}</p>
-                                    <p className="text-xs text-muted-foreground">{resident.address}</p>
+                                <div className="mb-6 rounded-2xl border border-border bg-muted/40 p-4">
+                                    <div className="flex items-start justify-between gap-4">
+                                        <div className="min-w-0">
+                                            <p className="text-sm font-semibold text-foreground">{resident.fullName}</p>
+                                            <p className="mt-1 text-xs text-muted-foreground">{resident.address}</p>
+                                        </div>
+                                        <div className="rounded-full bg-[#28FA93]/15 px-3 py-1 text-[11px] font-semibold text-[#1E8F62]">
+                                            {resident.barangay || "Barangay"}
+                                        </div>
+                                    </div>
+                                    {(resident.mobileNumber || resident.email) && (
+                                        <div className="mt-3 grid gap-2 text-xs text-muted-foreground">
+                                            {resident.mobileNumber && <p>Mobile: {resident.mobileNumber}</p>}
+                                            {resident.email && <p>Email: {resident.email}</p>}
+                                        </div>
+                                    )}
                                     {resident.precinctId && (
-                                        <p className="mt-1 text-xs font-medium text-[#28FA93]">Precinct {resident.precinctId}</p>
+                                        <p className="mt-3 text-xs font-medium text-[#28FA93]">Precinct {resident.precinctId}</p>
                                     )}
                                 </div>
 

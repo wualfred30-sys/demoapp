@@ -11,6 +11,8 @@ interface Resident {
     precinctId?: string
     photoUrl?: string
     barangay?: string
+    mobileNumber?: string
+    email?: string
 }
 
 interface IDInspectionModalProps {
@@ -40,7 +42,7 @@ export function IDInspectionModal({ resident, open, onClose }: IDInspectionModal
                     <motion.div
                         key="modal"
                         layoutId={`id-card-${resident.id}`}
-                        className="fixed inset-x-4 top-1/2 z-50 -translate-y-1/2 max-w-sm mx-auto"
+                        className="fixed inset-x-4 top-1/2 z-50 mx-auto max-w-sm -translate-y-1/2"
                         initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.9, opacity: 0 }}
@@ -55,9 +57,39 @@ export function IDInspectionModal({ resident, open, onClose }: IDInspectionModal
                             <X className="h-5 w-5" />
                         </button>
 
-                        {/* Full-size card — front view in modal */}
-                        <div style={{ aspectRatio: "1.6 / 1" }}>
-                            <IDCardView resident={resident} side="front" />
+                        <div className="rounded-[28px] bg-[#0B1120] p-3 shadow-2xl">
+                            <div style={{ aspectRatio: "1.6 / 1" }}>
+                                <IDCardView resident={resident} side="front" />
+                            </div>
+
+                            <div className="mt-3 grid gap-2 rounded-2xl border border-white/10 bg-white/5 p-4 text-white">
+                                <div className="flex items-center justify-between gap-4">
+                                    <div>
+                                        <p className="text-[10px] uppercase tracking-[0.2em] text-white/45">Resident</p>
+                                        <p className="text-sm font-semibold text-white">{resident.fullName}</p>
+                                    </div>
+                                    <div className="text-right">
+                                        <p className="text-[10px] uppercase tracking-[0.2em] text-white/45">Barangay</p>
+                                        <p className="text-sm font-semibold text-[#8BF5D3]">{resident.barangay ?? "-"}</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p className="text-[10px] uppercase tracking-[0.2em] text-white/45">Address</p>
+                                    <p className="text-sm text-white/85">{resident.address || "-"}</p>
+                                </div>
+                                {(resident.mobileNumber || resident.email) && (
+                                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                                        <div>
+                                            <p className="text-[10px] uppercase tracking-[0.2em] text-white/45">Mobile</p>
+                                            <p className="text-sm text-white/85">{resident.mobileNumber || "-"}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] uppercase tracking-[0.2em] text-white/45">Email</p>
+                                            <p className="truncate text-sm text-white/85">{resident.email || "-"}</p>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
                         </div>
 
                         <p className="mt-3 text-center text-xs text-white/50">

@@ -104,11 +104,13 @@ export default function DashboardPage() {
   const residentBase = {
     id: user.id!,
     fullName: user.fullName,
+    email: user.email,
+    mobileNumber: user.mobileNumber,
     address: user.address,
     precinctId: (user as any).precinctId as string | undefined,
     // Comment 1 fix: read from the canonical `photoUrl` field
     photoUrl: user.photoUrl,
-    barangay: "Barangay Linkod",
+    barangay: user.barangay ?? "Barangay Linkod",
   }
 
   const handleTabChange = (value: string) => {

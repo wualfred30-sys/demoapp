@@ -7,6 +7,8 @@ interface Resident {
     fullName: string
     address: string
     precinctId?: string
+    barangay?: string
+    mobileNumber?: string
 }
 
 interface BarangayQRProps {
@@ -19,6 +21,8 @@ export function BarangayQR({ resident, size = 120 }: BarangayQRProps) {
         id: resident.id,
         name: resident.fullName,
         address: resident.address,
+        barangay: resident.barangay ?? "-",
+        mobileNumber: resident.mobileNumber ?? "-",
         precinct: resident.precinctId ?? "-",
     })
 

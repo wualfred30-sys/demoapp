@@ -18,8 +18,11 @@ export default function RegisterSuccessPage() {
   const resident = {
     id: user?.id ?? "",
     fullName: user?.fullName ?? "Resident",
+    email: user?.email,
+    mobileNumber: user?.mobileNumber,
     address: user?.address ?? "",
-    barangay: "Barangay Linkod",
+    barangay: user?.barangay ?? "Barangay Linkod",
+    photoUrl: user?.photoUrl,
   }
 
   return (

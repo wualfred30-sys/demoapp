@@ -10,6 +10,7 @@ interface User {
   mobileNumber: string
   email: string
   address: string
+  barangay?: string
   /** Canonical field – base64 data URI or remote URL for the user's photo */
   photoUrl?: string
   role?: UserRole
@@ -64,6 +65,10 @@ export const AuthProvider = memo(({ children }: { children: ReactNode }) => {
             parsed.id = typeof crypto !== "undefined" && crypto.randomUUID
               ? crypto.randomUUID()
               : `user_${Date.now()}`
+          }
+          if (!parsed.barangay && typeof parsed.address === "string") {
+            const addressParts = parsed.address.split(",").map((part: string) => part.trim()).filter(Boolean)
+            parsed.barangay = addressParts.length > 1 ? addressParts[1] : undefined
           }
           setUser(parsed)
           setIsAuthenticated(true)

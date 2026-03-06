@@ -10,6 +10,8 @@ interface Resident {
     precinctId?: string
     photoUrl?: string
     barangay?: string
+    mobileNumber?: string
+    email?: string
 }
 
 interface IDCardViewProps {
@@ -36,6 +38,11 @@ export function IDCardView({ resident, side }: IDCardViewProps) {
                 <p className="text-center text-xs font-medium text-[#9CA3AF]">
                     Scan to verify resident
                 </p>
+
+                <div className="rounded-xl border border-[#1F2937] bg-[#0F172A] px-3 py-2 text-center">
+                    <p className="text-[10px] uppercase tracking-[0.18em] text-[#6B7280]">Resident Code</p>
+                    <p className="mt-1 text-sm font-semibold text-white">{resident.id.slice(0, 8).toUpperCase()}</p>
+                </div>
 
                 {/* Barangay seal placeholder */}
                 <div className="flex items-center gap-2">
@@ -67,7 +74,7 @@ export function IDCardView({ resident, side }: IDCardViewProps) {
                 <p className="text-[11px] text-[#6B7280]">Resident Identification Card</p>
             </div>
 
-            {/* Middle — photo + name */}
+            {/* Middle — photo + identity */}
             <div className="flex items-center gap-4">
                 {/* Photo */}
                 <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border-2 border-[#00FFCC]/40 bg-[#1F2937]">
@@ -88,25 +95,33 @@ export function IDCardView({ resident, side }: IDCardViewProps) {
                 </div>
 
                 {/* Info */}
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                     <p className="truncate text-sm font-bold text-white leading-tight">
                         {resident.fullName}
                     </p>
                     <p className="truncate text-[11px] text-[#9CA3AF] leading-snug mt-0.5">
                         {resident.address || "-"}
                     </p>
+                    {resident.mobileNumber && (
+                        <p className="truncate text-[10px] font-medium text-[#D1D5DB] mt-1">
+                            {resident.mobileNumber}
+                        </p>
+                    )}
                 </div>
             </div>
 
             {/* Footer */}
-            <div className="flex items-end justify-between">
+            <div className="flex items-end justify-between gap-3">
                 <div>
                     <p className="text-[10px] text-[#6B7280] uppercase tracking-wider">Precinct ID</p>
                     <p className="text-sm font-bold text-[#00FFCC]">
                         {resident.precinctId ?? "-"}
                     </p>
                 </div>
-                <p className="text-[10px] text-[#374151] font-mono">{resident.id.slice(0, 8).toUpperCase()}</p>
+                <div className="min-w-0 text-right">
+                    <p className="text-[10px] text-[#6B7280] uppercase tracking-wider">Resident Code</p>
+                    <p className="truncate text-[10px] text-[#374151] font-mono">{resident.id.slice(0, 8).toUpperCase()}</p>
+                </div>
             </div>
         </div>
     )
