@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useEffect, type ReactNode, memo, useCallback, useMemo } from "react"
 
-export type UserRole = "resident" | "captain" | "secretary" | "treasurer"
+export type UserRole = "resident"
 
 interface User {
   id?: string
@@ -16,24 +16,13 @@ interface User {
   role?: UserRole
 }
 
-interface StaffUser {
-  id: string
-  fullName: string
-  email: string
-  role: "captain" | "secretary" | "treasurer"
-}
-
 interface AuthContextType {
   user: User | null
-  staffUser: StaffUser | null
   isAuthenticated: boolean
-  isStaffAuthenticated: boolean
   isLoading: boolean
   userRole: UserRole | null
   login: (userData: User) => void
-  staffLogin: (staffData: StaffUser) => void
   logout: () => void
-  staffLogout: () => void
   updateUser: (userData: Partial<User>) => void
 }
 
@@ -41,9 +30,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export const AuthProvider = memo(({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null)
-  const [staffUser, setStaffUser] = useState<StaffUser | null>(null)
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [isStaffAuthenticated, setIsStaffAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -81,22 +68,9 @@ export const AuthProvider = memo(({ children }: { children: ReactNode }) => {
         }
       }
 
-      // Load staff auth
-      const storedStaff = localStorage.getItem("barangay_staff")
-      const storedStaffAuth = localStorage.getItem("barangay_staff_auth")
-
-      if (storedStaff && storedStaffAuth === "true") {
-        try {
-          setStaffUser(JSON.parse(storedStaff))
-          setIsStaffAuthenticated(true)
-        } catch (error) {
-          console.error("Failed to parse staff user data:", error)
-          localStorage.removeItem("barangay_staff")
-          localStorage.removeItem("barangay_staff_auth")
-          setStaffUser(null)
-          setIsStaffAuthenticated(false)
-        }
-      }
+      // This demo is resident-only. Clear any legacy staff auth state.
+      localStorage.removeItem("barangay_staff")
+      localStorage.removeItem("barangay_staff_auth")
 
       setIsLoading(false)
     }
@@ -115,18 +89,10 @@ export const AuthProvider = memo(({ children }: { children: ReactNode }) => {
         localStorage.removeItem("barangay_user")
         localStorage.removeItem("barangay_auth")
       }
-
-      if (staffUser && isStaffAuthenticated) {
-        localStorage.setItem("barangay_staff", JSON.stringify(staffUser))
-        localStorage.setItem("barangay_staff_auth", "true")
-      } else {
-        localStorage.removeItem("barangay_staff")
-        localStorage.removeItem("barangay_staff_auth")
-      }
     }, 500)
 
     return () => clearTimeout(timer)
-  }, [user, isAuthenticated, staffUser, isStaffAuthenticated, isLoading])
+  }, [user, isAuthenticated, isLoading])
 
   const login = useCallback((userData: User) => {
     // Guarantee a stable id is assigned once at login time, never at render time
@@ -142,21 +108,11 @@ export const AuthProvider = memo(({ children }: { children: ReactNode }) => {
     setIsAuthenticated(true)
   }, [])
 
-  const staffLogin = useCallback((staffData: StaffUser) => {
-    setStaffUser(staffData)
-    setIsStaffAuthenticated(true)
-  }, [])
-
   const logout = useCallback(() => {
     setUser(null)
     setIsAuthenticated(false)
     localStorage.removeItem("barangay_user")
     localStorage.removeItem("barangay_auth")
-  }, [])
-
-  const staffLogout = useCallback(() => {
-    setStaffUser(null)
-    setIsStaffAuthenticated(false)
     localStorage.removeItem("barangay_staff")
     localStorage.removeItem("barangay_staff_auth")
   }, [])
@@ -165,31 +121,23 @@ export const AuthProvider = memo(({ children }: { children: ReactNode }) => {
     setUser(prev => prev ? { ...prev, ...userData } : null)
   }, [])
 
-  const userRole: UserRole | null = staffUser?.role || user?.role || null
+  const userRole: UserRole | null = user?.role || null
 
   const value = useMemo(() => ({
     user,
-    staffUser,
     isAuthenticated,
-    isStaffAuthenticated,
     isLoading,
     userRole,
     login,
-    staffLogin,
     logout,
-    staffLogout,
     updateUser,
   }), [
     user,
-    staffUser,
     isAuthenticated,
-    isStaffAuthenticated,
     isLoading,
     userRole,
     login,
-    staffLogin,
     logout,
-    staffLogout,
     updateUser,
   ])
 
